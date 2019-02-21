@@ -1,6 +1,8 @@
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+
 const express = require('express')
 const app = express()
-const port = 3000
 const bodyParser = require('body-parser')
 var session = require('express-session');
 var formidable = require('formidable');
@@ -156,4 +158,7 @@ app.post('/set_date', loadUser, function(req, res) {
         });
     });
 });
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+server.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", port " + server_port )
+});
